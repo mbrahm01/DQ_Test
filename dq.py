@@ -130,7 +130,7 @@ def dq_validation(path):
                             else:
                                 numeric_count[i]+=0
                     unique_count={columns:len(value_set) for columns,value_set in unique_count.items()}
-                    merg={key:[tot_rec,unique_count[key],dic_data_max[key],dic_data_min[key],not_null_count[key],tot_rec-not_null_count[key],round(100*float(not_null_count[key])/float(tot_rec),2),unique_status[key],alpha_numeric[key],'Yes' if alpha_numeric[key]>0 else 'No',numeric_count[key] ]for key in dic_data_max if key in dic_data_min and key in unique_status and key in unique_count}
+                    merg={key:[tot_rec,unique_count[key],dic_data_max[key],dic_data_min[key],not_null_count[key],tot_rec-not_null_count[key],round(100*float(not_null_count[key])/float(tot_rec),2),unique_status[key],alpha_numeric[key],'YES' if alpha_numeric[key]>0 else 'NO',numeric_count[key] ]for key in dic_data_max if key in dic_data_min and key in unique_status and key in unique_count}
                     main_df.update(merg)
                 else:
                     width=df_config['Fixed_Width'].dropna().astype(int).tolist()
@@ -209,7 +209,7 @@ def dq_validation(path):
                                         else:
                                             numeric_count[i]+=0
                             unique_count={columns:len(value_set) for columns,value_set in unique_count.items()}      
-                            merg={key:[tot_rec,unique_count[key],dic_data_max[key],dic_data_min[key],not_null_count[key],tot_rec-not_null_count[key],round(100*float(not_null_count[key])/float(tot_rec),2),unique_status[key],alpha_numeric[key],'Yes' if alpha_numeric[key]>0 else 'No',numeric_count[key] ]for key in dic_data_max if key in dic_data_min and key in unique_status and key in unique_count}
+                            merg={key:[tot_rec,unique_count[key],dic_data_max[key],dic_data_min[key],not_null_count[key],tot_rec-not_null_count[key],round(100*float(not_null_count[key])/float(tot_rec),2),unique_status[key],alpha_numeric[key],'YES' if alpha_numeric[key]>0 else 'NO',numeric_count[key] ]for key in dic_data_max if key in dic_data_min and key in unique_status and key in unique_count}
                             main_df.update(merg)
                             break
                         except UnicodeDecodeError:
@@ -265,6 +265,9 @@ def dq_validation(path):
                 for r_id,row in enumerate(main_df1.values,start=6):
                     for c_id,value in enumerate(row,start=1):
                         cell=ws.cell(row=r_id,column=c_id+1,value=value)
+                        if r_id==15:
+                            if value=='YES':
+                                cell.fill=PatternFill(start_color="D8D42C",end_color="D8D42C",fill_type="solid")
                         if r_id==12 and c_id+1>=3:
                             if int(value)<50:
                                 cell.fill=PatternFill(start_color="FF7F7F",end_color="FF7F7F",fill_type="solid")
