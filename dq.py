@@ -57,8 +57,9 @@ def dq_validation(path):
                     with open(path_1+'//'+file_name,'r', encoding='utf-8') as f:
                         lines=f.readlines()
                         last_line=lines[-1].strip()
-                    if not last_line.endswith(delimiter):
-                        df=df.iloc[:-1]      
+                    if delimiter=='|':
+                        if not last_line.endswith(delimiter):
+                            df=df.iloc[:-1]      
                     #print('yes')
                     if df_config['Columns'].empty:
                         df.columns=df.iloc[0]
