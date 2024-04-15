@@ -69,6 +69,7 @@ def dq_validation(path):
                     tot_rec=tot_rec+df.shape[0]
                     for i in df.columns: 
                         df[i]=df[i].replace('nan',np.nan)
+                        df[i]=df[i].replace('',np.nan)
                         max_length=df[i].dropna().astype(str).str.len().max()
                         if i not in  dic_data_max:
                             if str(max_length)=='nan':
@@ -147,6 +148,7 @@ def dq_validation(path):
                                 tot_rec=tot_rec+df.shape[0]
                                 for i in df.columns: 
                                     df[i]=df[i].replace('nan',np.nan)
+                                    df[i]=df[i].replace('',np.nan)
                                     max_length=df[i].dropna().astype(str).str.len().max()
                                     if i not in  dic_data_max:
                                         if str(max_length)=='nan':
